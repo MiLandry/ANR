@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>ANR Index</title>
 </head>
 <body>
 
 <button>corp</button>
 <button>runner</button>
+<a href="/ANRLimited/corp">corp</a>
+<a href="runner.jsp">runner</a>
+
 </body>
 </html>

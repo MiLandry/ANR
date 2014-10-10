@@ -5,29 +5,45 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Draft a Corp</title>
+
+<script src="resources/jquery-1.11.1.min.js"></script>
+
 </head>
 <body>
 <h1>corp</h1><br>
-
+<div>
 <label>1</label>
-<input type="text" name="1" id="1"/>
-<button id="1">Select</button>
+<input type="text" name="1" id="1" class="cards"/>
+<button id="b1">Select</button>
 <br>
+</div>
 
-
+<div>
 <label>2</label>
-<input type="text" name="2" id="2"/>
-<button id="1">Select</button>
+<input type="text" name="2" id="2" class="cards"/>
+<button id="b2">Select</button>
 <br>
+</div>
 
+<div>
 <label>3</label>
-<input type="text" name="3" id="3"/>
-<button id="1">Select</button>
+<input type="text" name="3" id="3" class="cards"/>
+<button id="b3">Select</button>
 <br>
+</div>
 
 
 <label>deck list</label>
-<textarea>snare</textarea>
+<ul id="theList">
+
+</ul>
+
+<br>
+<br>
+<a href="/ANRLimited">Go back</a>
+
+<script src="jsp/corp.js"></script>
+
 
 </body>
 </html>
