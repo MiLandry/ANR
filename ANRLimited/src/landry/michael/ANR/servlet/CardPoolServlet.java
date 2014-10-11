@@ -40,12 +40,6 @@ public class CardPoolServlet extends HttpServlet {
 		
 		
 		
-		
-		
-		
-		
-		
-		
 		if (debug)
 		{
 			System.out.println(gson.toJson(cardPool));		

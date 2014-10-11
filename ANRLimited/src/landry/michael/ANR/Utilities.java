@@ -1,6 +1,15 @@
 package landry.michael.ANR;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 
 public class Utilities {
@@ -39,7 +48,7 @@ public class Utilities {
 		for (int i = 0; i < numberOfCards; i++)
 		{
 			
-			String cardName = "popup window";
+			String cardName = getRandomCard();
 			cardBatch.add(cardName);
 		}
 		
@@ -53,15 +62,57 @@ public class Utilities {
 	public String getRandomCard ()
 	{
 		//a random number between 1 and cord card count
-		int rand = r.nextInt(CORP_CARD_COUNT) + 1;
+		//int rand = r.nextInt(CORP_CARD_COUNT) + 1;
 		String cardName = "YEAH DATAMINE!";
 		
-		
-		
+		String sql = "SELECT card_name from anr"
+				+ " where id_corpcards =1;";
+		ResultSet r = executeSQL(sql);
+		try
+		{
+			cardName = r.getString("card_name");
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		return cardName;
 	}
+	
+	public ResultSet executeSQL(String sql)
+	{
+		Context initCtx= null;
+		DataSource ds= null;
+		Connection c = null;
+		ResultSet res = null;
+		try
+		{
+			initCtx = new InitialContext();
+			Context envCtx = (Context) initCtx.lookup("java:comp/env");
+			
+			ds = (DataSource)
+					envCtx.lookup("jdbc/jdbc/anr");
+			c = ds.getConnection();
+			Statement st = c.createStatement();
+			res = st.executeQuery(sql);
+			
+			
+			
+		} catch (NamingException e)
+		{
+			e.printStackTrace();
+		} catch (SQLException e)
+		{
+
+			e.printStackTrace();
+		}
+		
+		return res;
+
+	}
+	
 	
 
 }
