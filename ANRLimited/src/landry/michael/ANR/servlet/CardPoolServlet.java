@@ -1,6 +1,7 @@
 package landry.michael.ANR.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -15,12 +16,12 @@ import landry.michael.ANR.Utilities;
 
  
  
-public class CorpServlet extends HttpServlet {
+public class CardPoolServlet extends HttpServlet {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3914340180303789289L;
+	private static final long serialVersionUID = 391434180303789289L;
 	boolean debug = true;
 
 
@@ -29,50 +30,37 @@ public class CorpServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		
-		// TODO Auto-generated method stub
-		//super.doGet(request, response);
-		
 		Utilities util = new Utilities();
 		
-		//System.out.println("Hello Servlet");
 		System.out.println("Creating card packs");
 		ArrayList<ArrayList<String>> cardPool = util.getCardPool(10);
 		Gson gson = new Gson();
+		String json = gson.toJson(cardPool);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		if (debug)
 		{
-//			for (ArrayList<String> a: cardPool)
-//			{
-//				for (String s: a)
-//				{
-//					System.out.println(s);
-//					
-//				}
-//			}
-			
-			//test gson
-
-			System.out.println(gson.toJson(cardPool));
-			
+			System.out.println(gson.toJson(cardPool));		
 		}
-		//getCardPacks
 		
-		RequestDispatcher rd = request.getRequestDispatcher("jsp/corp.jsp");
-		rd.include(request, response);
 		
+		
+		
+		
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.print(json);
+		out.flush();
 		
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
-	}
- 
-
- 
-
- 
 
 }

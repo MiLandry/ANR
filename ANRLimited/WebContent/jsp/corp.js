@@ -1,18 +1,34 @@
 
 
-var cardPool = ["a","b","c","jinteki","nbn","hb"];
-
+//var cardPool = ["a","b","c","jinteki","nbn","hb"];
 
 
 $( document ).ready(function() {
 
-	var message = '${moo}';
-	alert(message);
+	var cardPool;
+	
+	//get json
+	
+	var xmlhttp = new XMLHttpRequest();
+	var url = "card_pool";
+	xmlhttp.onreadystatechange = function() {
+	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	        cardPool = JSON.parse(xmlhttp.responseText);
+	    	//cardPool = xmlhttp.responseText;
+	      //initialize idendities - doing it here because this method is firing after the document loads
+	        popCards();
+	    }
+	};
+	
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	//end get json
+	
+	
 	
 var cards = $(".cards"); //textareas
 
-//initialize idendities
-popCards();
+
 
 //function definitions
 
@@ -49,5 +65,7 @@ function popCards()
 
 
 });
+
+
 
 

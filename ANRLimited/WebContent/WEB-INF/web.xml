@@ -20,6 +20,12 @@
         <servlet-name>CorpServlet</servlet-name>
         <servlet-class>landry.michael.ANR.servlet.CorpServlet</servlet-class>
     </servlet>
+    
+    
+	<servlet>
+        <servlet-name>CardPoolServlet</servlet-name>
+        <servlet-class>landry.michael.ANR.servlet.CardPoolServlet</servlet-class>
+    </servlet>
 
 	<!-- ****************************** SERVLET MAPPINGS ********************************************************** -->
 
@@ -27,4 +33,10 @@
         <servlet-name>CorpServlet</servlet-name>
         <url-pattern>/corp</url-pattern>
     </servlet-mapping>
+    
+    	<servlet-mapping>
+        <servlet-name>CardPoolServlet</servlet-name>
+        <url-pattern>/card_pool</url-pattern>
+    </servlet-mapping>
+    
 </web-app> 
