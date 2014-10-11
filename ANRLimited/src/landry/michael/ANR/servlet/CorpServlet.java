@@ -21,7 +21,6 @@ public class CorpServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 3914340180303789289L;
-	boolean debug = true;
 
 
 	@Override
@@ -32,30 +31,6 @@ public class CorpServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//super.doGet(request, response);
 		
-		Utilities util = new Utilities();
-		
-		//System.out.println("Hello Servlet");
-		System.out.println("Creating card packs");
-		ArrayList<ArrayList<String>> cardPool = util.getCardPool(10);
-		Gson gson = new Gson();
-		
-		if (debug)
-		{
-//			for (ArrayList<String> a: cardPool)
-//			{
-//				for (String s: a)
-//				{
-//					System.out.println(s);
-//					
-//				}
-//			}
-			
-			//test gson
-
-			System.out.println(gson.toJson(cardPool));
-			
-		}
-		//getCardPacks
 		
 		RequestDispatcher rd = request.getRequestDispatcher("jsp/corp.jsp");
 		rd.include(request, response);

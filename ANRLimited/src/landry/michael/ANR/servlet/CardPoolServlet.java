@@ -33,7 +33,7 @@ public class CardPoolServlet extends HttpServlet {
 		Utilities util = new Utilities();
 		
 		System.out.println("Creating card packs");
-		ArrayList<ArrayList<String>> cardPool = util.getCardPool(10);
+		ArrayList<String> cardPool = util.getCardPool(10);
 		Gson gson = new Gson();
 		String json = gson.toJson(cardPool);
 		

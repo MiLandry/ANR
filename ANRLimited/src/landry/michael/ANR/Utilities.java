@@ -21,19 +21,47 @@ public class Utilities {
 	
 	Random r = new Random();
 	
+//	/**  
+//	 * A card pool is a set of card batches.
+//	 *   A card batch is (typically) three cards where one is selected 
+//	 */
+//	public ArrayList<ArrayList<String>> getCardPool(int numberOfBatches)
+//	{
+//		ArrayList<ArrayList<String>> cardPool = new ArrayList<ArrayList<String>>();
+//		
+//		String sql = "SELECT card_name from corpcards where id_corpcards = 1;";
+//		cardPool = executeSQL(sql);
+//		
+//		
+//		for (int i = 0; i < numberOfBatches; i++)
+//		{
+//			ArrayList<String> cardBatch = getCardBatch(3);
+//			cardPool.add(cardBatch);
+//		}
+//		
+//		return cardPool;
+//		
+//	}
+	
+	
 	/**  
 	 * A card pool is a set of card batches.
 	 *   A card batch is (typically) three cards where one is selected 
 	 */
-	public ArrayList<ArrayList<String>> getCardPool(int numberOfBatches)
+	public ArrayList<String> getCardPool(int numberOfBatches)
 	{
-		ArrayList<ArrayList<String>> cardPool = new ArrayList<ArrayList<String>>();
+		ArrayList<String> cardPool = new ArrayList<String>();
 		
-		for (int i = 0; i < numberOfBatches; i++)
-		{
-			ArrayList<String> cardBatch = getCardBatch(3);
-			cardPool.add(cardBatch);
-		}
+
+		cardPool = executeSQL();
+		
+		
+		
+//		for (int i = 0; i < numberOfBatches; i++)
+//		{
+//			ArrayList<String> cardBatch = getCardBatch(3);
+//			cardPool.add(cardBatch);
+//		}
 		
 		return cardPool;
 		
@@ -48,7 +76,7 @@ public class Utilities {
 		for (int i = 0; i < numberOfCards; i++)
 		{
 			
-			String cardName = getRandomCard();
+			String cardName = "zap";
 			cardBatch.add(cardName);
 		}
 		
@@ -59,45 +87,42 @@ public class Utilities {
 		
 	}
 	
-	public String getRandomCard ()
-	{
-		//a random number between 1 and cord card count
-		//int rand = r.nextInt(CORP_CARD_COUNT) + 1;
-		String cardName = "YEAH DATAMINE!";
-		
-		String sql = "SELECT card_name from anr"
-				+ " where id_corpcards =1;";
-		ResultSet r = executeSQL(sql);
-		try
-		{
-			cardName = r.getString("card_name");
-		} catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return cardName;
-	}
+
 	
-	public ResultSet executeSQL(String sql)
+	public ArrayList<String> executeSQL()
 	{
+		ArrayList<String> a = new ArrayList<String>();
+		
 		Context initCtx= null;
 		DataSource ds= null;
 		Connection c = null;
 		ResultSet res = null;
+		String card = "fail connection sql";
 		try
 		{
 			initCtx = new InitialContext();
 			Context envCtx = (Context) initCtx.lookup("java:comp/env");
 			
 			ds = (DataSource)
-					envCtx.lookup("jdbc/jdbc/anr");
+					envCtx.lookup("jdbc/anr");
 			c = ds.getConnection();
-			Statement st = c.createStatement();
-			res = st.executeQuery(sql);
 			
+			for (int i = 0; i < 30; i++)
+			{
+				int randomNumber = r.nextInt(CORP_CARD_COUNT) + 1;
+				Statement st = c.createStatement();
+				String sql = String.format("SELECT card_name from corpcards where id_corpcards = %s;"
+						, randomNumber);
+				res = st.executeQuery(sql);
+				if (res.next())
+				{
+					card = res.getString(1);
+					System.out.println("pulling card out of db: " + card);
+					a.add(card);
+				}
+				
+				
+			}
 			
 			
 		} catch (NamingException e)
@@ -109,7 +134,7 @@ public class Utilities {
 			e.printStackTrace();
 		}
 		
-		return res;
+		return a;
 
 	}
 	
