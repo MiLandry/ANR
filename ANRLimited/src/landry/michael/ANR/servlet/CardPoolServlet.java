@@ -37,7 +37,7 @@ public class CardPoolServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String json = gson.toJson(cardPool);
 		
-		
+		  
 		
 		
 		if (debug)

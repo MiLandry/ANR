@@ -8,7 +8,7 @@ type="javax.sql.DataSource"
 
 username="root"
 
-password=""
+password="snth"
 
 driverClassName="com.mysql.jdbc.Driver"
 

@@ -11,9 +11,11 @@
 </head>
 <body>
 <h1>corp</h1><br>
+
 <div>
 <label>1</label>
 <input type="text" name="1" id="1" class="cards"/>
+ <textarea name="ta1" id="ta1" rows="4" cols="75"></textarea>
 <button id="b1">Select</button>
 <br>
 </div>
@@ -21,6 +23,7 @@ htns
 <div>
 <label>2</label>
 <input type="text" name="2" id="2" class="cards"/>
+<textarea name="ta2" id="ta2" rows="4" cols="75"></textarea>
 <button id="b2">Select</button>
 <br>
 </div>
@@ -28,6 +31,7 @@ htns
 <div>
 <label>3</label>
 <input type="text" name="3" id="3" class="cards"/>
+<textarea name="ta3" id="ta3" rows="4" cols="75"></textarea>
 <button id="b3">Select</button>
 <br>
 </div>

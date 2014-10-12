@@ -1,11 +1,11 @@
 
 
 //var cardPool = ["a","b","c","jinteki","nbn","hb"];
-
+var card = {"cardName":"priority req","cost":0,"agenda":0,"pips":0,"idCorpCards":0};
 
 $( document ).ready(function() {
 
-	var cardPool;
+	var cardPool = null;
 	
 	//get json
 	
@@ -26,7 +26,7 @@ $( document ).ready(function() {
 	
 	
 	
-var cards = $(".cards"); //textareas
+var textinputs = $(".cards"); //textinputs
 
 
 
@@ -57,9 +57,21 @@ $("button").click(function(){
 
 function popCards()
 {
-	for( i=0; i<cards.length; i++ )
+	//pop a card batch from card pool
+//	cardPool.push(card.cardName);
+	var batch = ["a","b","c","header info"];
+	//pull out the header
+	
+	var header = batch.pop();
+	
+	//iterate over the text inputs
+	for( i=0; i<textinputs.length; i++ )
 	{
-		$(cards[i]).val(cardPool.pop());
+		//add card names to page
+		$(textinputs[i]).val(batch.pop());
+		
+		
+		//add card effects to page
 	}
 }
 
