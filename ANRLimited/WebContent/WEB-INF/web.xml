@@ -52,5 +52,13 @@
 	
 	</resource-ref>
     
+    <!-- ****************************** Listeners ********************************************************** -->
+    
+    <listener>
+    <listener-class>
+        landry.michael.ANR.StartUp
+    </listener-class>
+</listener>
+    
     
 </web-app> 

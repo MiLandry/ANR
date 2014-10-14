@@ -1,22 +1,29 @@
 package landry.michael.ANR.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity (name="corpcardshibernate")
 public class Card
 {
-	private String cardName;
+	
+	private String card_name;
 	private String faction;
 	private String type;
 	private int cost;
 	private int agenda;
 	private int pips;
 	private String effect;
-	private int idCorpCards;
-	public String getCardName()
+	@Id
+	private int id_corpcards;
+	public String getCard_name()
 	{
-		return cardName;
+		return card_name;
 	}
-	public void setCardName(String cardName)
+	public void setCard_name(String card_name)
 	{
-		this.cardName = cardName;
+		this.card_name = card_name;
 	}
 	public String getFaction()
 	{
@@ -66,15 +73,16 @@ public class Card
 	{
 		this.effect = effect;
 	}
-	public int getIdCorpCards()
+	public int getId_corpcards()
 	{
-		return idCorpCards;
+		return id_corpcards;
 	}
-	public void setIdCorpCards(int idCorpCards)
+	public void setId_corpcards(int id_corpcards)
 	{
-		this.idCorpCards = idCorpCards;
+		this.id_corpcards = id_corpcards;
 	}
 	
+
 	
 	
 
