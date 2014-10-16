@@ -32,16 +32,6 @@ public class CorpServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		
-		// TODO Auto-generated method stub
-		//super.doGet(request, response);
-		
-		//query the db and load it into an object and print its name
-		Session session = Hibernate.sessionFactory.openSession();
-		session.beginTransaction();
-		
-		Card card = (Card)session.get(Card.class, 6);
-		System.out.println(card.getCard_name());
-
 		
 		RequestDispatcher rd = request.getRequestDispatcher("jsp/corp.jsp");
 		rd.include(request, response);

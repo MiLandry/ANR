@@ -23,8 +23,8 @@
     
     
 	<servlet>
-        <servlet-name>CardPoolServlet</servlet-name>
-        <servlet-class>landry.michael.ANR.servlet.CardPoolServlet</servlet-class>
+        <servlet-name>JsonServlet</servlet-name>
+        <servlet-class>landry.michael.ANR.servlet.JsonServlet</servlet-class>
     </servlet>
 
 	<!-- ****************************** SERVLET MAPPINGS ********************************************************** -->
@@ -35,8 +35,8 @@
     </servlet-mapping>
     
     	<servlet-mapping>
-        <servlet-name>CardPoolServlet</servlet-name>
-        <url-pattern>/card_pool</url-pattern>
+        <servlet-name>JsonServlet</servlet-name>
+        <url-pattern>/json</url-pattern>
     </servlet-mapping>
     
     <!-- ****************************** Resource References********************************************************** -->

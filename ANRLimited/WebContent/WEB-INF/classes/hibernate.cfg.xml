@@ -19,7 +19,7 @@
 <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
 <!-- Create schema automatically -->
-<property name="hbm2ddl.auto">create</property>
+<!--<property name="hbm2ddl.auto">update</property>-->
 
 <!-- Show SQL in stdout-->
 <property name="show_sql">true</property>

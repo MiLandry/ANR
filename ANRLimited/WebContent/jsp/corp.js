@@ -1,22 +1,16 @@
 
 
-//var cardPool = ["a","b","c","jinteki","nbn","hb"];
-var card = {"cardName":"priority req","cost":0,"agenda":0,"pips":0,"idCorpCards":0};
 
 $( document ).ready(function() {
 
-	var cardPool = null;
-	
+	//get Corp Ids
 	//get json
-	
 	var xmlhttp = new XMLHttpRequest();
-	var url = "card_pool";
+	var url = "json";
 	xmlhttp.onreadystatechange = function() {
 	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-	        cardPool = JSON.parse(xmlhttp.responseText);
-	    	//cardPool = xmlhttp.responseText;
-	      //initialize idendities - doing it here because this method is firing after the document loads
-	        popCards();
+	    	var corpIdCardBatch = JSON.parse(xmlhttp.responseText);
+	        deployCardBatch(corpIdCardBatch);
 	    }
 	};
 	
@@ -27,6 +21,7 @@ $( document ).ready(function() {
 	
 	
 var textinputs = $(".cards"); //textinputs
+var textareas = $(".cardEffects"); //textareas
 
 
 
@@ -54,25 +49,26 @@ $("button").click(function(){
 	
 });
 
-
-function popCards()
+//given a card batch, it will add the card batch to the html
+function deployCardBatch(cardBatch)
 {
-	//pop a card batch from card pool
-//	cardPool.push(card.cardName);
-	var batch = ["a","b","c","header info"];
-	//pull out the header
 	
-	var header = batch.pop();
 	
-	//iterate over the text inputs
+	//iterate over the text inputs where the card names go
 	for( i=0; i<textinputs.length; i++ )
 	{
 		//add card names to page
-		$(textinputs[i]).val(batch.pop());
+		$(textinputs[i]).val(cardBatch.cards[i].card_name);
 		
-		
-		//add card effects to page
 	}
+	
+	//iterate over the text areas where the card effects go
+	for( i=0; i<textinputs.length; i++ )
+	{
+		//add card names to page
+		$(textareas[i]).val(cardBatch.cards[i].effect);
+		
+	}	
 }
 
 
