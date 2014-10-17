@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 import landry.michael.ANR.Utilities;
 import landry.michael.ANR.model.CardBatch;
 import landry.michael.ANR.model.CardBatchConfig;
+import landry.michael.ANR.model.CardPool;
+import landry.michael.ANR.model.CardPoolConfig;
 
  
  
@@ -37,8 +39,8 @@ public class JsonServlet extends HttpServlet {
 		
 		
 		//get action
-		//String action = (String) request.getParameter("action");
-		String action = "getCorpIdbatch";
+		String action = (String) request.getParameter("action");
+		//String action = "getCorpIdbatch";
 		Utilities util = new Utilities();
 		
 		if (action == null)
@@ -64,8 +66,26 @@ public class JsonServlet extends HttpServlet {
 			
 			
 		}
-
+		
+		if (action.equalsIgnoreCase("getCardPool"))
+		{
 			
+			String faction = (String) request.getParameter("faction");
+			String numberOfBatches = (String) request.getParameter("numberOfBatches");
+			System.out.println(String.format("Generating Card Pool containing %s card batches(s)", numberOfBatches));
+			System.out.println("Faction: " + faction);
+				
+			CardPoolConfig config = new CardPoolConfig();
+			config.setNumberOfBatches(Integer.parseInt(numberOfBatches));
+			config.setFaction("Jinteki");
+			//create a cardPool Object
+			CardPool cardPool = new CardPool(config);
+			//dump the CardPool object into an arraylist
+			ArrayList<CardBatch> cpa = cardPool.getCardBatches();
+			json = gson.toJson(cpa);
+			
+		}
+		
 		
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();

@@ -11,6 +11,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import landry.michael.ANR.model.CardBatch;
+
 
 public class Utilities {
 	
@@ -47,21 +49,19 @@ public class Utilities {
 	/**  
 	 * A card pool is a set of card batches.
 	 *   A card batch is (typically) three cards where one is selected 
+	 * @param faction 
 	 */
-	public ArrayList<String> getCardPool(int numberOfBatches)
+	public ArrayList<CardBatch> getCardPool(int numberOfBatches, String faction)
 	{
-		ArrayList<String> cardPool = new ArrayList<String>();
-		
+		ArrayList<CardBatch> cardPool = new ArrayList<CardBatch>();
 
-		cardPool = executeSQL();
+		
+		//query the db based on the configuration
+		//iterate over the rs
 		
 		
 		
-//		for (int i = 0; i < numberOfBatches; i++)
-//		{
-//			ArrayList<String> cardBatch = getCardBatch(3);
-//			cardPool.add(cardBatch);
-//		}
+		
 		
 		return cardPool;
 		
@@ -89,54 +89,55 @@ public class Utilities {
 	
 
 	
-	public ArrayList<String> executeSQL()
-	{
-		ArrayList<String> a = new ArrayList<String>();
-		
-		Context initCtx= null;
-		DataSource ds= null;
-		Connection c = null;
-		ResultSet res = null;
-		String card = "fail connection sql";
-		try
-		{
-			initCtx = new InitialContext();
-			Context envCtx = (Context) initCtx.lookup("java:comp/env");
-			
-			ds = (DataSource)
-					envCtx.lookup("jdbc/anr");
-			c = ds.getConnection();
-			
-			for (int i = 0; i < 30; i++)
-			{
-				int randomNumber = r.nextInt(CORP_CARD_COUNT) + 1;
-				Statement st = c.createStatement();
-				String sql = String.format("SELECT card_name from corpcards where id_corpcards = %s;"
-						, randomNumber);
-				res = st.executeQuery(sql);
-				if (res.next())
-				{
-					card = res.getString(1);
-					System.out.println("pulling card out of db: " + card);
-					a.add(card);
-				}
-				
-				
-			}
-			
-			
-		} catch (NamingException e)
-		{
-			e.printStackTrace();
-		} catch (SQLException e)
-		{
-
-			e.printStackTrace();
-		}
-		
-		return a;
-
-	}
+	
+//	public ArrayList<String> executeSQL()
+//	{
+//		ArrayList<String> a = new ArrayList<String>();
+//		
+//		Context initCtx= null;
+//		DataSource ds= null;
+//		Connection c = null;
+//		ResultSet res = null;
+//		String card = "fail connection sql";
+//		try
+//		{
+//			initCtx = new InitialContext();
+//			Context envCtx = (Context) initCtx.lookup("java:comp/env");
+//			
+//			ds = (DataSource)
+//					envCtx.lookup("jdbc/anr");
+//			c = ds.getConnection();
+//			
+//			for (int i = 0; i < 30; i++)
+//			{
+//				int randomNumber = r.nextInt(CORP_CARD_COUNT) + 1;
+//				Statement st = c.createStatement();
+//				String sql = String.format("SELECT card_name from corpcards where id_corpcards = %s;"
+//						, randomNumber);
+//				res = st.executeQuery(sql);
+//				if (res.next())
+//				{
+//					card = res.getString(1);
+//					System.out.println("pulling card out of db: " + card);
+//					a.add(card);
+//				}
+//				
+//				
+//			}
+//			
+//			
+//		} catch (NamingException e)
+//		{
+//			e.printStackTrace();
+//		} catch (SQLException e)
+//		{
+//
+//			e.printStackTrace();
+//		}
+//		
+//		return a;
+//
+//	}
 	
 	
 	
