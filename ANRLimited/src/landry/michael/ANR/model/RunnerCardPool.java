@@ -12,9 +12,9 @@ import org.hibernate.Session;
 
 import landry.michael.ANR.Hibernate;
 
-public class CardPool
+public class RunnerCardPool
 {
-	public static final int OUTOFFACTIONPERCENTAGE = 14;
+	public static final int OUTOFFACTIONPERCENTAGE = 17774;
 
 	private ArrayList<CardBatch> cardBatches;
 	
@@ -33,7 +33,7 @@ public class CardPool
 	}
 
 
-	public CardPool(CardPoolConfig config)
+	public RunnerCardPool(CardPoolConfig config)
 	{
 		cardBatches = new ArrayList<CardBatch>();
 		

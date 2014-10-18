@@ -27,7 +27,7 @@
 
 <!-- Names the annotated entity classes-->		
 <mapping class="landry.michael.ANR.model.Card" />
-		
+<mapping class="landry.michael.ANR.model.RunnerCard" />		
 		
 	</session-factory>
 </hibernate-configuration>

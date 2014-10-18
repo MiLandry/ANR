@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="jsp/Corp.css">
 </head>
 <body>
+<h5 id="identity"></h5>
 <table id="theTable">
 <tr>
 <td>

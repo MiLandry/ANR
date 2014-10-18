@@ -78,7 +78,7 @@ public class JsonServlet extends HttpServlet {
 			//configure card pool
 			CardPoolConfig config = new CardPoolConfig();
 			config.setNumberOfBatches(Integer.parseInt(numberOfBatches));
-			config.setFaction("Jinteki");
+			config.setFaction(faction);
 			
 			//create a cardPool Object
 			CardPool cardPool = new CardPool(config);
@@ -91,6 +91,7 @@ public class JsonServlet extends HttpServlet {
 		
 		
 		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(json);
 		out.flush();

@@ -5,31 +5,30 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-@Entity (name="corpcardshibernate")
-public class Card
+@Entity (name="runnercardshibernate")
+public class RunnerCard
 {
 	
 	@Id
-	private int id_corpcards;
+	private int id_runnercard;
 	private String card_name;
 	private String faction;
 	private String type;
 	private String cost;
-	private int agenda;
 	private int pips;
+	private int str;
+	private int mu;
 	@Lob
 	private String effect;
 	private boolean is_economy;
 	private boolean is_banned;
-	
-
-	public boolean isIs_banned()
+	public int getId_runnercard()
 	{
-		return is_banned;
+		return id_runnercard;
 	}
-	public void setIs_banned(boolean is_banned)
+	public void setId_runnercard(int id_runnercard)
 	{
-		this.is_banned = is_banned;
+		this.id_runnercard = id_runnercard;
 	}
 	public String getCard_name()
 	{
@@ -63,14 +62,6 @@ public class Card
 	{
 		this.cost = cost;
 	}
-	public int getAgenda()
-	{
-		return agenda;
-	}
-	public void setAgenda(int agenda)
-	{
-		this.agenda = agenda;
-	}
 	public int getPips()
 	{
 		return pips;
@@ -78,6 +69,22 @@ public class Card
 	public void setPips(int pips)
 	{
 		this.pips = pips;
+	}
+	public int getStr()
+	{
+		return str;
+	}
+	public void setStr(int str)
+	{
+		this.str = str;
+	}
+	public int getMu()
+	{
+		return mu;
+	}
+	public void setMu(int mu)
+	{
+		this.mu = mu;
 	}
 	public String getEffect()
 	{
@@ -87,15 +94,6 @@ public class Card
 	{
 		this.effect = effect;
 	}
-	public int getId_corpcards()
-	{
-		return id_corpcards;
-	}
-	public void setId_corpcards(int id_corpcards)
-	{
-		this.id_corpcards = id_corpcards;
-	}
-	
 	public boolean isIs_economy()
 	{
 		return is_economy;
@@ -103,6 +101,14 @@ public class Card
 	public void setIs_economy(boolean is_economy)
 	{
 		this.is_economy = is_economy;
+	}
+	public boolean isIs_banned()
+	{
+		return is_banned;
+	}
+	public void setIs_banned(boolean is_banned)
+	{
+		this.is_banned = is_banned;
 	}
 	
 	

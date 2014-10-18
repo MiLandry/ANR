@@ -27,6 +27,11 @@
         <servlet-class>landry.michael.ANR.servlet.JsonServlet</servlet-class>
     </servlet>
 
+	<servlet>
+        <servlet-name>RunnerServlet</servlet-name>
+        <servlet-class>landry.michael.ANR.servlet.RunnerServlet</servlet-class>
+    </servlet>
+    
 	<!-- ****************************** SERVLET MAPPINGS ********************************************************** -->
 
 	<servlet-mapping>
@@ -39,12 +44,18 @@
         <url-pattern>/json</url-pattern>
     </servlet-mapping>
     
+    	<servlet-mapping>
+        <servlet-name>RunnerServlet</servlet-name>
+        <url-pattern>/runner</url-pattern>
+    </servlet-mapping>
+    
+    
     <!-- ****************************** Resource References********************************************************** -->
     <resource-ref>
 
 	<description>Mysql resource</description>
 	
-	<res-ref-name>jdbc/anr</res-ref-name>
+	<res-ref-name>jdbc/anr?characterEncoding=utf8</res-ref-name>
 	
 	<res-type>javax.sql.DataSource</res-type>
 	
