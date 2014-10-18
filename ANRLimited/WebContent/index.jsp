@@ -5,13 +5,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ANR Index</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+
 </head>
 <body>
 
-<button>corp</button>
-<button>runner</button>
-<a href="/ANRLimited/corp">corp</a>
-<a href="runner.jsp">runner</a>
+<h1>ANDROID: NETUNNER ARENA</h1>
+
+<form action="/ANRLimited/corp">
+    <input type="submit" value="CORP">
+</form>
+
+<form action="runner.jsp">
+    <input type="submit" value="Runner">
+</form>
+
+<h3>THE RULES (petite size decks)</h3>
+<p>
+Corp decks are a minimum of 30 cards, and can only contain 12-14 agenda points
+They have no limit to influence
+</p>
+ji
 
 </body>
 </html>

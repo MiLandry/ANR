@@ -37,16 +37,16 @@ public class CardPool
 		cardBatches = new ArrayList<CardBatch>();
 		
 		int batchCount = config.getNumberOfBatches();
-	
 		String faction = config.getFaction();
 		
 		//open connection		
 		Session session = Hibernate.sessionFactory.openSession();
 		session.beginTransaction();
+//		String hql = String.format("from corpcardshibernate"
+//				+ " where faction = '%s' AND type <> 'Identity' "
+//				+ "or faction = 'Neutral' ",faction);
 		String hql = String.format("from corpcardshibernate"
-				+ " where faction = '%s' "
-				+ "or faction = 'Neutral' "
-				+ "and type!= 'Identity'",faction);
+				+ " where type ='Identity'");
 		Query query = session.createQuery(hql); //from org.hibernate 
 		List<Card> qcards =query.list(); //from java.util
 		

@@ -2,6 +2,15 @@ $( document ).ready(function(){
 	var isSelectingAnIdentity = true;
 	var cardPool; 
 
+	//Results table
+	var totalCardCount = $("#totalCardCount");
+	var agendaCount = $("#agendaCount");
+	var iceCount = $("#iceCount");
+	var assetCount = $("#assetCount");
+	var upgradeCount = $("#upgradeCount");
+	var operationCount = $("#operationCount");
+
+
 	//get Corp Ids
 	//get json
 	var xmlhttp = new XMLHttpRequest();
@@ -23,34 +32,97 @@ $( document ).ready(function(){
 	
 var textinputs = $(".cards"); //textinputs
 var textareas = $(".cardEffects"); //textareas
-
-
+var costFields = $(".cost");
+var factionFields = $(".faction");
+var typeFields = $(".type");
 
 //function definitions
 
 $("button").click(function(){
 	
 	var div = $(this).parent();
-	var cardNameField = div.children("input");
+	//var table = div.children.("table");
+	var cardName = div.children("input").val();
+	var cardCost = div.find('label.cost').html();
+	var cardFaction = div.find('label.faction').html();
+	var cardType = div.find('label.type').html();
 	
 	//if there are no cards, game over
-	if (cardNameField.val()==="")
-	{
-		return;
-		
-	}
+//	if (cardName==="")
+//	{
+//		return;
+//		
+//	}
+
+	
+	//increace total card count
+	totalCardCount.html((parseInt(totalCardCount.html()) + 1));
 	
 	//add selection to list
-	var cardName = cardNameField.val();
 	$("#theList").append("<li>" + cardName + "</li>");
+	
+	//if card is Agenda
+	if (cardType=="Agenda")
+	{
+		//increment count
+		agendaCount.html((parseInt(agendaCount.html()) + 1));
 
+		//add card to list
+		$("#agendaList").append("<li>" + cardName + "</li>");		
+	}
+
+	//if card is ice
+
+		if (cardType=="Ice")
+		{
+			//increment count
+			iceCount.html((parseInt(iceCount.html()) + 1));
+
+			//add card to list
+			$("#iceList").append("<li>" + cardName + "</li>");		
+		}
+
+	//if card is asset
+	if (cardType=="Asset")
+	{
+		//increment count
+		assetCount.html((parseInt(assetCount.html()) + 1));
+
+		//add card to list
+		$("#assetList").append("<li>" + cardName + "</li>");		
+	}
+
+	//if card is upgrade
+	if (cardType=="Upgrade")
+	{
+		//increment count
+		upgradeCount.html((parseInt(upgradeCount.html()) + 1));
+
+		//add card to list
+		$("#upgradeList").append("<li>" + cardName + "</li>");		
+	}
+
+	//if card is operation
+	if (cardType=="Operation")
+	{
+		//increment count
+		operationCount.html((parseInt(operationCount.html()) + 1));
+
+		//add card to list
+		$("#operationList").append("<li>" + cardName + "</li>");		
+	}
+
+	// end add selection to list
+	
+	
+	
 	//If the user has chosen an Identity, get an appropriate cardpool and begin
 	if (isSelectingAnIdentity)
 		{
 		isSelectingAnIdentity= false;
-		
 			var args = [];
 			
+	totalCardCount.html((parseInt(totalCardCount.html()) - 1));			
 			var faction = "Jinteki";
 			args.push(faction);			
 			getCardPool(args);	
@@ -64,8 +136,14 @@ $("button").click(function(){
 		$("input").val("");
 	}
 	
-	else deployCardBatch(cardPool.pop());
+	
+	else
+		{
+			deployCardBatch(cardPool.pop());
+		
+		}
 
+	
 function getCardPool(args)
 {
 	//json call
@@ -101,6 +179,7 @@ function deployCardBatch(cardBatch)
 {
 	
 	
+	
 	//iterate over the text inputs where the card names go
 	for( i=0; i<textinputs.length; i++ )
 	{
@@ -114,6 +193,39 @@ function deployCardBatch(cardBatch)
 	{
 		//add card names to page
 		$(textareas[i]).val(cardBatch.cards[i].effect);
+		
+	}	
+	
+	//iterate over the text areas where the card Costs go
+	for( i=0; i<textinputs.length; i++ )
+	{
+		if (cardBatch.cards[i].cost==null)
+			{
+			$(costFields[i]).text("");
+			
+			}
+		//add card names to page
+		else
+			{
+			$(costFields[i]).text(cardBatch.cards[i].cost);
+			
+			}
+		
+	}	
+	
+	//iterate over the text areas where the card Factions go
+	for( i=0; i<textinputs.length; i++ )
+	{
+		//add card names to page
+		$(factionFields[i]).text(cardBatch.cards[i].faction);
+		
+	}	
+	
+	//iterate over the text areas where the card types go
+	for( i=0; i<textinputs.length; i++ )
+	{
+		//add card names to page
+		$(typeFields[i]).text(cardBatch.cards[i].type);
 		
 	}	
 }

@@ -75,11 +75,14 @@ public class JsonServlet extends HttpServlet {
 			System.out.println(String.format("Generating Card Pool containing %s card batches(s)", numberOfBatches));
 			System.out.println("Faction: " + faction);
 				
+			//configure card pool
 			CardPoolConfig config = new CardPoolConfig();
 			config.setNumberOfBatches(Integer.parseInt(numberOfBatches));
 			config.setFaction("Jinteki");
+			
 			//create a cardPool Object
 			CardPool cardPool = new CardPool(config);
+			
 			//dump the CardPool object into an arraylist
 			ArrayList<CardBatch> cpa = cardPool.getCardBatches();
 			json = gson.toJson(cpa);
