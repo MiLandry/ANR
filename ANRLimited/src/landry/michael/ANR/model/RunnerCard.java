@@ -10,18 +10,18 @@ public class RunnerCard
 {
 	
 	@Id
-	private int id_runnercard;
+	private Integer id_runnercard;
 	private String card_name;
 	private String faction;
 	private String type;
 	private String cost;
-	private int pips;
-	private int str;
-	private int mu;
+	private Integer pips;
+	private Integer str;
+	private Integer mu;
 	@Lob
 	private String effect;
-	private boolean is_economy;
-	private boolean is_banned;
+	private Boolean is_economy;
+	private Boolean is_banned;
 	public int getId_runnercard()
 	{
 		return id_runnercard;

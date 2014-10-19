@@ -14,20 +14,20 @@ import landry.michael.ANR.Hibernate;
 
 public class RunnerCardPool
 {
-	public static final int OUTOFFACTIONPERCENTAGE = 17774;
+	public static final int OUTOFFACTIONPERCENTAGE = 14;
 
-	private ArrayList<CardBatch> cardBatches;
+	private ArrayList<RunnerCardBatch> cardBatches;
 	
 
 
-	public ArrayList<CardBatch> getCardBatches()
+	public ArrayList<RunnerCardBatch> getCardBatches()
 	{
 		return cardBatches;
 	}
 
 
 
-	public void setCardBatches(ArrayList<CardBatch> cardBatches)
+	public void setCardBatches(ArrayList<RunnerCardBatch> cardBatches)
 	{
 		this.cardBatches = cardBatches;
 	}
@@ -35,7 +35,7 @@ public class RunnerCardPool
 
 	public RunnerCardPool(CardPoolConfig config)
 	{
-		cardBatches = new ArrayList<CardBatch>();
+		cardBatches = new ArrayList<RunnerCardBatch>();
 		
 		int batchCount = config.getNumberOfBatches();
 		String faction = config.getFaction();
@@ -45,11 +45,11 @@ public class RunnerCardPool
 		session.beginTransaction();
 		
 		//create in faction card space
-		String hql = String.format("from corpcardshibernate"
+		String hql = String.format("from runnercardshibernate"
 				+ " where faction = '%s' AND type <> 'Identity' "
 				+ "or faction = 'Neutral' ",faction);
 		Query query = session.createQuery(hql); //from org.hibernate 
-		List<Card> IFCards =query.list(); //from java.util
+		List<RunnerCard> IFCards =query.list(); //from java.util
 
 		session.getTransaction().commit();
 		session.close();
@@ -58,11 +58,11 @@ public class RunnerCardPool
 		session = Hibernate.sessionFactory.openSession();
 		session.beginTransaction();	
 		//create OOF card space
-		 hql = String.format("from corpcardshibernate"
-				+ " where faction <> '%s' AND type <> 'Identity'  AND type <> 'Agenda' "
+		 hql = String.format("from runnercardshibernate"
+				+ " where faction <> '%s' AND type <> 'Identity'"
 				+ "AND faction <> 'Neutral' ",faction);
 		query = session.createQuery(hql); //from org.hibernate 
-		List<Card> OOFCards =query.list(); //from java.util
+		List<RunnerCard> OOFCards =query.list(); //from java.util
 		
 		
 		session.getTransaction().commit();
@@ -74,8 +74,8 @@ public class RunnerCardPool
 		//creating batches and adding them
 		for (int i = 0; i < batchCount; i++)
 		{
-			CardBatch cb = new CardBatch();
-			ArrayList<Card> cards = new ArrayList<Card>();			
+			RunnerCardBatch cb = new RunnerCardBatch();
+			ArrayList<RunnerCard> cards = new ArrayList<RunnerCard>();			
 		
 			//creatingcards for the batch
 		
@@ -96,7 +96,7 @@ public class RunnerCardPool
 					Iterator<Integer> itr = set.iterator();
 					//end random set
 					
-					Card card = (Card) OOFCards.get((Integer)itr.next());
+					RunnerCard card = (RunnerCard) OOFCards.get((Integer)itr.next());
 					cards.add(card);
 					System.out.println("Out of faction batch");
 					
@@ -120,7 +120,7 @@ public class RunnerCardPool
 					Iterator<Integer> itr = set.iterator();
 					//end random set
 					
-					Card card = (Card) IFCards.get((Integer)itr.next());
+					RunnerCard card = (RunnerCard) IFCards.get((Integer)itr.next());
 					cards.add(card);
 					
 				}
