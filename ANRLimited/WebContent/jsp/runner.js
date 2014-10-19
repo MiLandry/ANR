@@ -12,10 +12,10 @@ $( document ).ready(function(){
 	var operationCount = $("#operationCount");
 
 
-	//get Corp Ids
+	//get Runner Ids
 	//get json
 	var xmlhttp = new XMLHttpRequest();
-	var url = "json?action=getCorpIdbatch";
+	var url = "json?action=getRunnerIdbatch";
 	xmlhttp.onreadystatechange = function()
 	{
 	    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
@@ -39,10 +39,11 @@ var typeFields = $(".type");
 
 //function definitions
 
+////////////////////////////////////////////BUTTON CLICK?////////////////////////////////////////////
 $("button").click(function(){
 	
+	//find the html elements 
 	var div = $(this).parent();
-	//var table = div.children.("table");
 	var cardName = div.children("input").val();
 	var cardCost = div.find('label.cost').html();
 	var cardFaction = div.find('label.faction').html();
@@ -62,45 +63,45 @@ $("button").click(function(){
 	//add selection to list
 	$("#theList").append("<li>" + cardName + "</li>");
 	
-	//if card is Agenda
-	if (cardType=="Agenda")
+	//if card is program
+	if (cardType=="Program")
 	{
 		//increment count
-		agendaCount.html((parseInt(agendaCount.html()) + 1));
+		//agendaCount.html((parseInt(agendaCount.html()) + 1));
 
 		//add card to list
-		$("#agendaList").append("<li>" + cardName + "</li>");		
+		$("#programList").append("<li>" + cardName + "</li>");		
 	}
 
-	//if card is ice
+	//if card is hardware
 
-		if (cardType=="Ice")
+		if (cardType=="Hardware")
 		{
 			//increment count
-			iceCount.html((parseInt(iceCount.html()) + 1));
+			//iceCount.html((parseInt(iceCount.html()) + 1));
 
 			//add card to list
-			$("#iceList").append("<li>" + cardName + "</li>");		
+			$("#hardwareList").append("<li>" + cardName + "</li>");		
 		}
 
-	//if card is asset
-	if (cardType=="Asset")
+	//if card is resource
+	if (cardType=="Resource")
 	{
 		//increment count
-		assetCount.html((parseInt(assetCount.html()) + 1));
+		//assetCount.html((parseInt(assetCount.html()) + 1));
 
 		//add card to list
-		$("#assetList").append("<li>" + cardName + "</li>");		
+		$("#resourceList").append("<li>" + cardName + "</li>");		
 	}
 
-	//if card is upgrade
-	if (cardType=="Upgrade")
+	//if card is event
+	if (cardType=="Event")
 	{
 		//increment count
-		upgradeCount.html((parseInt(upgradeCount.html()) + 1));
+		//upgradeCount.html((parseInt(upgradeCount.html()) + 1));
 
 		//add card to list
-		$("#upgradeList").append("<li>" + cardName + "</li>");		
+		$("#eventList").append("<li>" + cardName + "</li>");		
 	}
 
 	//if card is operation
@@ -126,8 +127,7 @@ $("button").click(function(){
 	totalCardCount.html((parseInt(totalCardCount.html()) - 1));
 	
 	$("#identity").append(cardName);	
-			
-			
+				
 			var args = [];
 			var chosenFaction = cardFaction;			
 			getCardPool(args);	
@@ -136,10 +136,10 @@ $("button").click(function(){
 
 	
 	//reset the inputs
-	if (cardPool.length<1)
-	{
-		$("input").val("");
-	}
+//	if (cardPool.length<1)
+//	{
+//		$("input").val("");
+//	}
 	
 	
 	else
@@ -148,13 +148,13 @@ $("button").click(function(){
 		
 		}
 
-	
+//////////////////////////////////////////////////Utility functions////////////////////////////////	
 function getCardPool(args)
 {
 	//json call
 	var xmlhttp2 = new XMLHttpRequest();
 
-	var url2 = "json?action=getCardPool&faction=" +chosenFaction+ "&numberOfBatches=30";
+	var url2 = "json?action=getRunnerCardPool&faction=" +chosenFaction+ "&numberOfBatches=30";
 	xmlhttp2.onreadystatechange = function()
 	{
 	    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200)

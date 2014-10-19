@@ -17,6 +17,8 @@ import landry.michael.ANR.model.CardBatch;
 import landry.michael.ANR.model.CardBatchConfig;
 import landry.michael.ANR.model.CardPool;
 import landry.michael.ANR.model.CardPoolConfig;
+import landry.michael.ANR.model.RunnerCardBatch;
+import landry.michael.ANR.model.RunnerCardPool;
 
  
  
@@ -89,6 +91,45 @@ public class JsonServlet extends HttpServlet {
 			
 		}
 		
+		if (action.equalsIgnoreCase("getRunnerCardPool"))
+		{
+			
+			String faction = (String) request.getParameter("faction");
+			String numberOfBatches = (String) request.getParameter("numberOfBatches");
+			System.out.println(String.format("Generating Runner Card Pool containing %s card batches(s)", numberOfBatches));
+			System.out.println("Faction: " + faction);
+				
+			//configure card pool
+			CardPoolConfig config = new CardPoolConfig();
+			config.setNumberOfBatches(Integer.parseInt(numberOfBatches));
+			config.setFaction(faction);
+			
+			//create a cardPool Object
+			RunnerCardPool cardPool = new RunnerCardPool(config);
+			
+			//dump the CardPool object into an arraylist
+			ArrayList<RunnerCardBatch> cpa = cardPool.getCardBatches();
+			json = gson.toJson(cpa);
+			
+		}
+		
+		if (action.equalsIgnoreCase("getRunnerIdbatch"))
+		{
+			
+			
+			//Integer number = (Integer) request.getParameter("numberofcards");
+			Integer number = 3;
+			System.out.println(String.format("Generating Runner ID Pack containing %s card(s)", number));
+			
+			CardBatchConfig config = new CardBatchConfig();
+			config.type = "RunnerIdentity";
+			config.cardCount = 3;
+			
+			RunnerCardBatch cb = new RunnerCardBatch(config);
+			json = gson.toJson(cb);
+			
+			
+		}
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

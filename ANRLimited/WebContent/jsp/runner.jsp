@@ -97,27 +97,27 @@
 <div id="listContainer">
 <div class="lists">
 Program cards
-<ul id="agendaList">
+<ul id="programList">
 </ul>
 </div>
 
 
 <div class="lists">
-HardWare cards
-<ul id="iceList">
+Hardware cards
+<ul id="hardwareList">
 </ul></div>
 
 
 <div class="lists">
 Resource cards
-<ul id="assetList">
+<ul id="resourceList">
 </ul>
 </div>
 
 
 <div class="lists">
 Event cards
-<ul id="upgradeList">
+<ul id="eventList">
 </ul></div>
 
 </div>
@@ -133,7 +133,7 @@ Event cards
 <h3>Overview</h3>
 <br>
 
-<div id="deckRationTable"><%@ include file="deckRatioTable.jsp" %></div>
+<!--<div id="deckRationTable"><%@ include file="deckRatioTable.jsp" %></div>-->
 <br>
 <br>
 
